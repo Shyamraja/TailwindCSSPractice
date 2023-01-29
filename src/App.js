@@ -1,8 +1,11 @@
 import React from 'react'
+import Countries from './components/Countries'
 
 function App() {
   return (
-   <div>Hello React</div>
+   <div>
+    <Countries/>
+   </div>
   );
 }
 
