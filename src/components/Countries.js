@@ -1,28 +1,28 @@
-import React, {useState, UseEffect, useEffect} from 'react'
-const url ="https://restcountries.com/v3.1/all";
+import React, {useState, useEffect} from 'react';
+import Article from "./Article";
 
-const Countries = () => {
-    const [countries, setCountries] = useState([])
-    
-    const fetchCountryData = async () =>{
-       const response = await fetch(url)
-       const countries = await response.json()
-       setCountries(countries)
-       console.log(countries)
-       }
-    useEffect(() => {
-        fetchCountryData()
-    }, [])
+export default function Countries() {
+   const [countries, setCountries] = useState([])
 
-  return (
-    <>
-    {countries.map((country) =>{ 
-       const { id } = country
-       return <article key={id}>Country Info</article>
+   useEffect(() => {
+      const getCountries = async () =>{
+         try {
+         const res = await fetch ("https://restcountries.com/v3.1/all");
+         const data = await res.json();
+         setCountries(data);
+         
+       }  catch (error) {
+         console.error(error);
+         }
+      };
+      getCountries();
+     }, []);
 
-    } )}
-    </>
-  )
+   return ( 
+         <>
+            {countries.map((country) => (
+              <Article key={country.name.common} {...country} />
+            ))}        
+        </>
+   );
 }
-
-export default Countries

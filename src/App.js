@@ -1,12 +1,17 @@
-import React from 'react'
-import Countries from './components/Countries'
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+import Countries from './components/Countries';
+//import Error from './components/Error';
 
 function App() {
-  return (
-   <div>
-    <Countries/>
-   </div>
-  );
+
+    return (
+      <BrowserRouter>
+         <Routes>
+           <Route path = "/" element={<Countries/>}></Route>
+          
+         </Routes>
+      </BrowserRouter>
+   );    
 }
 
 export default App;
